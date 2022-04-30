@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
-import Items from './Items/Items';
+import Items from './Items';
 
 const Home = () => {
     return (
