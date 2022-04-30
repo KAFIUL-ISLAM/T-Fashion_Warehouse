@@ -1,12 +1,13 @@
 import React from 'react';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
+import Items from './Items/Items';
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
-            <h1>This is home</h1>
+            <Items></Items>
             <Footer></Footer>
         </div>
     );
