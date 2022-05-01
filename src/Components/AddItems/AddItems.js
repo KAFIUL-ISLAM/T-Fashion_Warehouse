@@ -14,7 +14,16 @@ const AddItems = () => {
         const description = e.target.description.value;
         const image = e.target.image.value;
         const item = { name, price, quantity, supplier, description, image };
-        console.log(item);
+        const url = 'https://t-fashion-warehouse.herokuapp.com/products';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
         e.target.reset();
     }
 
@@ -27,7 +36,7 @@ const AddItems = () => {
                         <h2 className="text-center text-2xl font-bold text-blue-800">Add an item</h2>
                         <div className="mt-6">
                             <div className="flex-col space-y-4">
-                                <input name='name' type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required/>
+                                <input name='name' type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
                                 <input name='price' type="number" placeholder="$Price" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
                                 <input name='quantity' type="number" placeholder="Quantity" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
                                 <input name='supplier' type="text" placeholder="Supplier's name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
