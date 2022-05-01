@@ -3,33 +3,39 @@ import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
 
 const AddItems = () => {
+
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const price = e.target.price.value;
+        const quantity = e.target.quantity.value;
+        const supplier = e.target.supplier.value;
+        const description = e.target.description.value;
+        const image = e.target.image.value;
+        const item = { name, price, quantity, supplier, description, image };
+        console.log(item);
+        e.target.reset();
+    }
+
     return (
         <div>
             <Header></Header>
             <div className='min-h-screen flex justify-center items-center'>
                 <div className="px-4 py-6 sm:grid grid-cols-2 gap-x-6 max-w-4xl mx-auto">
-                    <form className="mb-8">
-                        <h2 className="text-center text-2xl font-bold text-blue-800">Add Contact</h2>
+                    <form className="mb-8" onSubmit={handleSubmit}>
+                        <h2 className="text-center text-2xl font-bold text-blue-800">Add an item</h2>
                         <div className="mt-6">
                             <div className="flex-col space-y-4">
-                                <input type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" />
-                                <input type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" />
-                                <input type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" />
+                                <input name='name' type="text" placeholder="Name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required/>
+                                <input name='price' type="number" placeholder="$Price" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
+                                <input name='quantity' type="number" placeholder="Quantity" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
+                                <input name='supplier' type="text" placeholder="Supplier's name" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
+                                <textarea name='description' cols="30" rows="5" placeholder="Description..." className="border-2 w-full px-4 py-2 text-gray-700 outline-none rounded-md text-md" required></textarea>
+                                <input name='image' type="text" placeholder="Image link" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
                             </div>
-                            <div className="mt-4">
-                                <p className="mb-1 text-gray-700 font-semibold text-sm">Contact Type</p>
-                                <div className="flex space-x-4 my-2 items-center">
-                                    <div className="flex items-center space-x-1">
-                                        <input type="radio" id="personal" className="cursor-pointer" />
-                                        <label htmlFor="personal" className="cursor-pointer" />Personal
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                        <input type="radio" id="professional" className="cursor-pointer" />
-                                        <label htmlFor="professional" className="cursor-pointer" />Professional
-                                    </div>
-                                </div>
-                            </div>
-                            <button className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">Add Contact</button>
+                            <button type='submit'
+                                className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">Add Item</button>
                         </div>
                     </form>
                     <div className=" space-y-4">
