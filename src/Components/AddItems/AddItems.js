@@ -6,7 +6,23 @@ import ItemCard from './ItemCard';
 
 const AddItems = () => {
 
-    const [items] = useItems([]);
+    const [items, setItems] = useItems([]);
+   
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure?');
+        if (proceed) {
+            const url = `https://t-fashion-warehouse.herokuapp.com/products/${id}`;
+            fetch(url, {
+                method: 'DElETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remainItems = items.filter(item => item._id !== id);
+                    setItems(remainItems);
+                })
+        }
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -27,6 +43,7 @@ const AddItems = () => {
         })
         e.target.reset();
     }
+
 
     return (
         <div>
@@ -53,7 +70,7 @@ const AddItems = () => {
                     <div className='border-2 px-4 py-6'>
                         <div className="space-y-4 max-h-[700px] overflow-y-scroll">
                             {
-                                items.map(item => <ItemCard key={item._id} item={item}></ItemCard>)
+                                    items.map(item => <ItemCard key={item._id} item={item} handleDelete={handleDelete}></ItemCard>)
                             }
                         </div>
                     </div>
