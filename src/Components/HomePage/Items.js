@@ -21,7 +21,7 @@ const Items = () => {
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 ">
                     {
-                        items.map(item => <Item key={item._id} item={item}></Item>)
+                        items.slice(0,6).map(item => <Item key={item._id} item={item}></Item>)
                         
                     }
                 </div>

@@ -21,7 +21,7 @@ const Header = () => {
                         {/*  Active Link = text-indigo-500 
                         Inactive Link = hover:text-indigo-500  */}
                         <li className="md:px-4 md:py-2 text-indigo-500"><Link to={'/'}>Home</Link></li>
-                        <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>Add Items</Link></li>
+                        <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/additems'}>Add Items</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>Manage Inventories</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>Blogs</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>My Items</Link></li>
