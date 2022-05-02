@@ -5,7 +5,7 @@ const Header = () => {
 
 
     return (
-        <nav className="bg-gray-200 shadow shadow-gray-300 w-100 px-8 md:px-auto">
+        <nav className="bg-gray-200 shadow shadow-gray-300 w-100 px-8 py-4 md:px-auto">
             <div className="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
                 {/*  Logo  */}
                 <div className="text-indigo-500 md:order-1">
@@ -22,7 +22,7 @@ const Header = () => {
                         Inactive Link = hover:text-indigo-500  */}
                         <li className="md:px-4 md:py-2 text-indigo-500"><Link to={'/'}>Home</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/additems'}>Add Items</Link></li>
-                        <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>Manage Inventories</Link></li>
+                        <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/manageitems'}>Manage Inventories</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>Blogs</Link></li>
                         <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link to={'/'}>My Items</Link></li>
                     </ul>

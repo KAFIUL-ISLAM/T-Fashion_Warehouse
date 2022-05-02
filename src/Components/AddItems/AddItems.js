@@ -1,4 +1,5 @@
 import React from 'react';
+import useHandleDelete from '../../Hooks/useHandleDelete';
 import useItems from '../../Hooks/useItems';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
@@ -7,21 +8,11 @@ import ItemCard from './ItemCard';
 const AddItems = () => {
 
     const [items, setItems] = useItems([]);
-   
-    const handleDelete = id => {
-        const proceed = window.confirm('Are you sure?');
-        if (proceed) {
-            const url = `https://t-fashion-warehouse.herokuapp.com/products/${id}`;
-            fetch(url, {
-                method: 'DElETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    const remainItems = items.filter(item => item._id !== id);
-                    setItems(remainItems);
-                })
-        }
+    const handleDelete = useHandleDelete();
+
+    const removeItem = id => {
+        const remainItems = items.filter(item => item._id !== id);
+        setItems(remainItems);
     }
 
     const handleSubmit = e => {
@@ -41,6 +32,13 @@ const AddItems = () => {
             },
             body: JSON.stringify(item)
         })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data, item);
+                const updatedItems = [...items, item];
+                setItems(updatedItems);
+            }
+            )
         e.target.reset();
     }
 
@@ -66,11 +64,11 @@ const AddItems = () => {
                                     className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">Add Item</button>
                             </div>
                         </form>
-                   </div>
+                    </div>
                     <div className='border-2 px-4 py-6'>
                         <div className="space-y-4 max-h-[700px] overflow-y-scroll">
                             {
-                                    items.map(item => <ItemCard key={item._id} item={item} handleDelete={handleDelete}></ItemCard>)
+                                items.map(item => <ItemCard key={item._id} item={item} handleDelete={handleDelete} removeItem={removeItem}></ItemCard>)
                             }
                         </div>
                     </div>

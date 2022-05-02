@@ -1,11 +1,11 @@
 import React from 'react';
-import useItems from '../../Hooks/useItems';
 
 const ItemCard = props => {
 
     const { name, _id } = props.item;
-    const { handleDelete } = props;
-    
+    const { handleDelete, removeItem } = props;
+
+
     return (
         <div className=" p-4 rounded-md bg-indigo-50">
             <div className="flex justify-between mb-2 items-center">
@@ -31,7 +31,10 @@ const ItemCard = props => {
                 </div>
                 <div className="space-x-1">
                     <span className="text-md px-6 py-2 rounded-md bg-green-500 text-indigo-50 font-semibold cursor-pointer text-indigo-50 font-semibold cursor-pointer">Edit</span>
-                    <span onClick={() => handleDelete(_id)} className="text-md px-6 py-2 rounded-md bg-red-500 text-indigo-50 font-semibold cursor-pointer">Delete</span>
+                    <span onClick={() => {
+                        handleDelete(_id);
+                        removeItem(_id);
+                    }} className="text-md px-6 py-2 rounded-md bg-red-500 text-indigo-50 font-semibold cursor-pointer">Delete</span>
                 </div>
             </div>
         </div>
