@@ -32,8 +32,11 @@ const ItemCard = props => {
                 <div className="space-x-1">
                     <span className="text-md px-6 py-2 rounded-md bg-green-500 text-indigo-50 font-semibold cursor-pointer text-indigo-50 font-semibold cursor-pointer">Edit</span>
                     <span onClick={() => {
-                        handleDelete(_id);
-                        removeItem(_id);
+                        const proceed = window.confirm('Are you sure?');
+                        if (proceed) {
+                            handleDelete(_id);
+                            removeItem(_id);
+                        }
                     }} className="text-md px-6 py-2 rounded-md bg-red-500 text-indigo-50 font-semibold cursor-pointer">Delete</span>
                 </div>
             </div>

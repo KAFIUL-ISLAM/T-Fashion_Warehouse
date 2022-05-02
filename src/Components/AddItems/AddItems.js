@@ -34,7 +34,6 @@ const AddItems = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data, item);
                 const updatedItems = [...items, item];
                 setItems(updatedItems);
             }
