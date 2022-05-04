@@ -19,7 +19,7 @@ const Items = () => {
                     </h1>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 ">
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-3 ">
                     {
                         items.slice(0,6).map(item => <Item key={item._id} item={item}></Item>)
                         

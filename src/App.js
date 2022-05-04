@@ -5,6 +5,7 @@ import NotFoundPage from './Components/CommonComp/NotFoundPage';
 import Home from './Components/HomePage/Home';
 import Login from './Components/Login/Login';
 import ManageItems from './Components/ManageItems/ManageItems';
+import UpdateItem from './Components/UpdateItem/UpdateItem';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/additems' element={<AddItems></AddItems>}>
         </Route>
         <Route path='/manageitems' element={<ManageItems></ManageItems>}></Route>
+        <Route path='/manage/:id' element={<UpdateItem></UpdateItem>}></Route>
         <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </div>
