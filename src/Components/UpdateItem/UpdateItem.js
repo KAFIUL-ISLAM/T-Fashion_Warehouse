@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useSingleItem from '../../Hooks/useSingleItem';
 import Footer from '../CommonComp/Footer';
@@ -7,18 +7,47 @@ import CountUp from 'react-countup';
 
 const UpdateItem = () => {
 
-    
+    const [newQuantity, setQuantity] = useState(0);
     const { id } = useParams();
     const [item] = useSingleItem(id);
-    const { _id, name, price, quantity, supplier, description, image } = item;
+    const { name, price, quantity, supplier, description, image } = item;
 
-    const handleUpdateStock = e => {
+    useEffect(() => {
+        setQuantity(parseInt(quantity));
+    }, [quantity])
+
+    const handleDelivered = () => {
+        const updatedQuantity = parseInt(newQuantity) - 1;
+        handleUpdateStock(updatedQuantity);
+    }
+
+
+    const handleRestock = e => {
         e.preventDefault();
         const number = e.target.number.value;
+        const updatedQuantity = parseInt(newQuantity) + parseInt(number);
 
-        item.quantity = parseInt(quantity) + parseInt(number);
-        console.log(item);
+        handleUpdateStock(updatedQuantity);
         e.target.reset();
+    }
+
+    const handleUpdateStock = updatedQuantity => {
+
+        const updatedItem = { updatedQuantity };
+
+        const url = `https://t-fashion-warehouse.herokuapp.com/products/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedItem)
+        })
+            .then(res => res.json)
+            .then(data => {
+                setQuantity(updatedQuantity);
+                alert('updated successful');
+            })
     }
 
 
@@ -26,7 +55,7 @@ const UpdateItem = () => {
         <div>
             <Header></Header>
             <div className='grid md:grid-cols-3 min-h-screen font-serif'>
-                
+
                 <div className='md:col-span-2'>
                     <div className="py-8 text-slate-800">
                         <div className="space-y-6">
@@ -46,14 +75,14 @@ const UpdateItem = () => {
                 <div className='flex justify-center items-center'>
                     <div className='text-center py-8'>
                         <h1 className='font-bold text-4xl mb-8 text-slate-800'>Update Stock</h1>
-                        <p className='text-xl'>Available: <CountUp className='text-red-600 text-4xl font-bold' end={quantity} /></p>
-                        <button className='my-8 bg-indigo-500 text-white px-4 py-2 rounded-lg '>Delivered</button>
-                        <form onSubmit={handleUpdateStock}>
-                            <input className='border-2 p-2' type="number" name='number' placeholder='Enter number of item' required/>
+                        <p className='text-xl'>Available: <CountUp className='text-red-600 text-4xl font-bold' end={newQuantity} /></p>
+                        <button onClick={handleDelivered} className='my-8 bg-indigo-500 text-white px-4 py-2 rounded-lg '>Delivered</button>
+                        <form onSubmit={handleRestock}>
+                            <input className='border-2 p-2' type="number" name='number' placeholder='Enter number of item' required />
                             <button type='submit' className='my-8 bg-indigo-500 border-indigo-500 border-2 text-white px-4 py-2'>Restock</button>
                         </form>
                     </div>
-               </div>
+                </div>
             </div>
             <Footer></Footer>
         </div>
