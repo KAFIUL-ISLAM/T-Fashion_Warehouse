@@ -27,7 +27,7 @@ const Item = props => {
 
     return (
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="50" className="p-4 text-center cursor-pointer">
-            <div className="py-8 rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-gray-100 text-slate-800">
+            <div className="py-8 rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-[#EEF2FF] text-slate-800">
                 <div className="space-y-6">
                     <img className="mx-auto h-[350px] w-[320px] border-2 border-gray-400 rounded" src={image} alt="" />
 

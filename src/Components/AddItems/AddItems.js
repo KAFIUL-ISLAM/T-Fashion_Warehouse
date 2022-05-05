@@ -1,19 +1,11 @@
-import React from 'react';
-import useHandleDelete from '../../Hooks/useHandleDelete';
-import useItems from '../../Hooks/useItems';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
-import ItemCard from './ItemCard';
 
 const AddItems = () => {
 
-    const [items, setItems] = useItems([]);
-    const handleDelete = useHandleDelete();
-
-    const removeItem = id => {
-        const remainItems = items.filter(item => item._id !== id);
-        setItems(remainItems);
-    }
+    const [item, setItem] = useState({});
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -23,21 +15,19 @@ const AddItems = () => {
         const supplier = e.target.supplier.value;
         const description = e.target.description.value;
         const image = e.target.image.value;
-        const item = { name, price, quantity, supplier, description, image };
+        const newItem = { name, price, quantity, supplier, description, image };
         const url = 'https://t-fashion-warehouse.herokuapp.com/products';
         fetch(url, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(item)
+            body: JSON.stringify(newItem)
         })
             .then(res => res.json())
             .then(data => {
-                const updatedItems = [...items, item];
-                setItems(updatedItems);
-            }
-            )
+                setItem(newItem);
+            })
         e.target.reset();
     }
 
@@ -62,14 +52,37 @@ const AddItems = () => {
                                 <button type='submit'
                                     className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">Add Item</button>
                             </div>
+                            <Link className='flex gap-2 items-center mt-4 text-lg underline text-blue-600' to={'/manageitems'}>Manage all items
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </Link>
                         </form>
                     </div>
                     <div className='border-2 px-4 py-6'>
-                        <div className="space-y-4 max-h-[700px] overflow-y-scroll">
-                            {
-                                items.map(item => <ItemCard key={item._id} item={item} handleDelete={handleDelete} removeItem={removeItem}></ItemCard>)
-                            }
-                        </div>
+                        {
+                            item.name ?
+                                <div>
+                                    <h1 className='text-center text-4xl font-bold uppercase text-slate-600'>Added Item:</h1>
+                                    <div className="mt-4 space-y-4 p-4 ">
+                                        <div className='space-y-8'>
+                                            <h1 className='text-3xl font-bold text-center'>{item.name}</h1>
+                                            <img className='max-w-80 mx-auto' src={item.image} alt="" />
+                                        </div>
+                                        <div className='space-y-4 text-2xl'>
+                                            <p className='text-2xl'>Price:  <span className='font-bold text-blue-600'>${item.price}</span></p>
+                                            <p>Available: <span className='text-red-600 font-bold'>{item.quantity}</span>
+                                            </p>
+                                        </div>
+                                        <div className='space-y-4'>
+                                            <p>{item.description}</p>
+                                            <p className='text-xl'>Supplier: <span className='text-orange-600 font-semibold'>{item.supplier}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <h1 className='text-3xl font-bold text-center text-slate-600'>Added Item will be shown here</h1>
+                        }
                     </div>
                 </div>
             </div>

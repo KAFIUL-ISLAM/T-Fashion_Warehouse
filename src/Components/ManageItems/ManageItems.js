@@ -36,9 +36,9 @@ const ManageItems = () => {
                             {
                                 items.map(item =>
                                     <tr className="border-b hover:bg-orange-100" key={item._id}>
-                                        <td className="p-3 px-5">{item.name}</td>
-                                        <td className="p-3 px-5">{item._id}</td>
-                                        <td className="p-3 px-5">{item.price}</td>
+                                        <td className="p-3 px-5 flex items-center gap-4"><img className='w-10 h-10 rounded-full' src={item.image} alt="" /><span>{item.name}</span></td>
+                                        <td className="p-3 px-5">{item.quantity}</td>
+                                        <td className="p-3 px-5">{item.supplier}</td>
                                         <td className="p-3 px-5 flex justify-end">
                                             <Link to={`/manage/${item._id}`}>
                                                 <button type="button" className="mr-3 text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">

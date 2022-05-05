@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useSingleItem from '../../Hooks/useSingleItem';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
@@ -72,15 +72,20 @@ const UpdateItem = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex justify-center items-center'>
+                <div className='flex justify-center items-center bg-gray-100'>
                     <div className='text-center py-8'>
                         <h1 className='font-bold text-4xl mb-8 text-slate-800'>Update Stock</h1>
                         <p className='text-xl'>Available: <CountUp className='text-red-600 text-4xl font-bold' end={newQuantity} /></p>
                         <button onClick={handleDelivered} className='my-8 bg-indigo-500 text-white px-4 py-2 rounded-lg '>Delivered</button>
                         <form onSubmit={handleRestock}>
                             <input className='border-2 p-2' type="number" name='number' placeholder='Enter number of item' required />
-                            <button type='submit' className='my-8 bg-indigo-500 border-indigo-500 border-2 text-white px-4 py-2'>Restock</button>
+                            <button type='submit' className='bg-indigo-500 border-indigo-500 border-2 text-white px-4 py-2'>Restock</button>
                         </form>
+                        <Link className='flex gap-2 items-center mt-4 text-lg underline text-blue-600' to={'/manageitems'}>Manage all items
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </Link>
                     </div>
                 </div>
             </div>
