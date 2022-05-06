@@ -7,6 +7,7 @@ import NotFoundPage from './Components/CommonComp/NotFoundPage';
 import Home from './Components/HomePage/Home';
 
 import ManageItems from './Components/ManageItems/ManageItems';
+import RequiredAuth from './Components/RequiredAuth/RequiredAuth';
 import UpdateItem from './Components/UpdateItem/UpdateItem';
 
 function App() {
@@ -16,10 +17,14 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path='/additems' element={<AddItems></AddItems>}>
+        <Route path='/additems' element={<RequiredAuth>
+          <AddItems></AddItems>
+        </RequiredAuth>}>
         </Route>
         <Route path='/manageitems' element={<ManageItems></ManageItems>}></Route>
-        <Route path='/manage/:id' element={<UpdateItem></UpdateItem>}></Route>
+        <Route path='/manage/:id' element={<RequiredAuth>
+          <UpdateItem></UpdateItem>
+        </RequiredAuth>}></Route>
         <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </div>
