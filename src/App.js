@@ -3,10 +3,12 @@ import './App.css';
 import AddItems from './Components/AddItems/AddItems';
 import Login from './Components/AuthenticationPage/Login';
 import Register from './Components/AuthenticationPage/Register';
+import Blogs from './Components/Blogs/Blogs';
 import NotFoundPage from './Components/CommonComp/NotFoundPage';
 import Home from './Components/HomePage/Home';
 
 import ManageItems from './Components/ManageItems/ManageItems';
+import MyItems from './Components/MyItems/MyItems';
 import RequiredAuth from './Components/RequiredAuth/RequiredAuth';
 import UpdateItem from './Components/UpdateItem/UpdateItem';
 
@@ -25,6 +27,10 @@ function App() {
         <Route path='/manage/:id' element={<RequiredAuth>
           <UpdateItem></UpdateItem>
         </RequiredAuth>}></Route>
+        <Route path='/myitems' element={<RequiredAuth>
+          <MyItems></MyItems>
+        </RequiredAuth>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </div>
