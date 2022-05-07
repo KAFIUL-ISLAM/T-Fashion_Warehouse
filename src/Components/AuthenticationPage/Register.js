@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useSetAccessToken from '../../Hooks/useSetAccessToken';
 import Footer from '../CommonComp/Footer';
 import Spinner from '../CommonComp/Spinner';
 
@@ -11,6 +12,7 @@ const Register = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
+    const setAccessToken = useSetAccessToken();
 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
@@ -27,11 +29,12 @@ const Register = () => {
         }
     })
 
-    const handleRegister = e => {
+    const handleRegister = async e => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        createUserWithEmailAndPassword(email, password);
+        await createUserWithEmailAndPassword(email, password);
+        await setAccessToken(email);
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle();

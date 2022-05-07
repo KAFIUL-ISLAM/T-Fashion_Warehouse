@@ -4,6 +4,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
 import Spinner from '../CommonComp/Spinner';
+import useSetAccessToken from '../../Hooks/useSetAccessToken';
 
 const Login = () => {
 
@@ -11,6 +12,7 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
+    const setAccessToken = useSetAccessToken();
 
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -28,11 +30,12 @@ const Login = () => {
         }
     })
 
-    const handleLogin = e => {
+    const handleLogin = async e => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        await setAccessToken(email);
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle();

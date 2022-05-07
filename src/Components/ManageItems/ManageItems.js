@@ -24,24 +24,33 @@ const ManageItems = () => {
                         Manage Inventories
                     </h1>
                 </div>
+                <div>
+                    <Link to={'/additems'}>
+                        <button className='ml-4 px-2 py-3 rounded text-white font-semibold flex bg-indigo-500'>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>Add New Item
+                        </button>
+                    </Link>
+                </div>
                 <div className="mt-2 px-3 py-4 flex justify-center">
-                    <table className="w-full text-md bg-white shadow-md rounded mb-4">
+                    <table className="w-full text-md bg-white shadow-md rounded mb-4 table-auto">
                         <tbody>
                             <tr className="border-b">
                                 <th className="text-left p-3 px-5">Name</th>
                                 <th className="text-left p-3 px-5">Quantity</th>
-                                <th className="text-left p-3 px-5">Supplier</th>
+                                <th className="text-left p-3 px-5 hidden md:block">Supplier</th>
                                 <th></th>
                             </tr>
                             {
                                 items.map(item =>
                                     <tr className="border-b hover:bg-orange-100" key={item._id}>
-                                        <td className="p-3 px-5 flex items-center gap-4"><img className='w-10 h-10 rounded-full' src={item.image} alt="" /><span>{item.name}</span></td>
-                                        <td className="p-3 px-5">{item.quantity}</td>
-                                        <td className="p-3 px-5">{item.supplier}</td>
+                                        <td className="p-3 px-5 flex items-center gap-4"><img className='hidden md:block w-10 h-10 rounded-full' src={item.image} alt="" /><span>{item.name}</span></td>
+                                        <td className="p-3 px-5">{item.quantity === 0 ? 'Sold Out' : item.quantity}</td>
+                                        <td className="p-3 px-5 hidden md:table-cell">{item.supplier}</td>
                                         <td className="p-3 px-5 flex justify-end">
-                                            <Link to={`/manage/${item._id}`}>
-                                                <button type="button" className="mr-3 text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                            <Link to={`/inventory/${item._id}`}>
+                                                <button type="button" className="mr-2 text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>

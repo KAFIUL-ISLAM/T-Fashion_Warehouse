@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useItems from '../../Hooks/useItems';
 import Item from './Item';
 
@@ -13,20 +14,25 @@ const Items = () => {
 
             <div className="-mt-64 ">
                 <div className="w-full text-center">
-                    <p className="text-sm tracking-widest text-white">Subtitle</p>
+                    <p className="text-sm tracking-widest text-white">Welcome to</p>
                     <h1 className="font-bold text-5xl text-white">
-                        Title
+                        T-Fashion Warehouse
                     </h1>
                 </div>
 
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-3 ">
                     {
                         items.slice(0,6).map(item => <Item key={item._id} item={item}></Item>)
-                        
                     }
                 </div>
             </div>
-
+            <div className='w-fit ml-auto mr-4'>
+                <Link className='flex gap-2 items-center mt-4 text-lg underline text-blue-600 mb-8' to={'/manageitems'}>Manage all items
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </Link>
+            </div>
         </div>
     );
 };

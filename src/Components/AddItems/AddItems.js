@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
 
 const AddItems = () => {
 
     const [item, setItem] = useState({});
+    const [user] = useAuthState(auth);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -15,7 +18,8 @@ const AddItems = () => {
         const supplier = e.target.supplier.value;
         const description = e.target.description.value;
         const image = e.target.image.value;
-        const newItem = { name, price, quantity, supplier, description, image };
+        const email = user.email;
+        const newItem = { name, price, quantity, supplier, description, image, email };
         const url = 'https://t-fashion-warehouse.herokuapp.com/products';
         fetch(url, {
             method: 'POST',
