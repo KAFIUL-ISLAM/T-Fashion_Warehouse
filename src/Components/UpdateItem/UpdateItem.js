@@ -4,12 +4,14 @@ import useSingleItem from '../../Hooks/useSingleItem';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
 import CountUp from 'react-countup';
+import Spinner from '../CommonComp/Spinner/Spinner';
 
 const UpdateItem = () => {
 
     const [newQuantity, setQuantity] = useState(0);
     const { id } = useParams();
-    const [item] = useSingleItem(id);
+    const [item, loading] = useSingleItem(id);
+    const [updating, setUpdating] = useState(false);
     const { name, price, quantity, supplier, description, image } = item;
 
     useEffect(() => {
@@ -23,7 +25,6 @@ const UpdateItem = () => {
         }
     }
 
-
     const handleRestock = e => {
         e.preventDefault();
         const number = e.target.number.value;
@@ -34,7 +35,7 @@ const UpdateItem = () => {
     }
 
     const handleUpdateStock = updatedQuantity => {
-
+        setUpdating(true);
         const updatedItem = { updatedQuantity };
 
         const url = `https://t-fashion-warehouse.herokuapp.com/products/${id}`;
@@ -49,6 +50,7 @@ const UpdateItem = () => {
             .then(data => {
                 setQuantity(updatedQuantity);
                 alert('updated successful');
+                setUpdating(false);
             })
     }
 
@@ -59,31 +61,34 @@ const UpdateItem = () => {
             <div className='grid md:grid-cols-3 min-h-screen font-serif'>
 
                 <div className='md:col-span-2'>
-                    <div className="py-8 text-slate-800">
-                        <div className="space-y-6">
-                            <div className="font-bold text-4xl mb-8 text-center">{name}</div>
-                            <img className="mx-auto" src={image} alt="" />
+                    {
+                        loading ? <Spinner></Spinner>
+                            :
+                            <div className="py-8 text-slate-800">
+                                <div className="space-y-6">
+                                    <div className="font-bold text-4xl mb-8 text-center">{name}</div>
+                                    <img className="mx-auto" src={image} alt="" />
 
-                            <div className='space-y-10 px-16 text-xl font-bold'>
-                                <p>Price: <span className='text-blue-600  font-bold'>${price}</span></p>
-                                <p className="text-gray-600 text-base">
-                                    {description}
-                                </p>
-                                <p>Supplier: <span className='text-orange-600 font-semibold'>{supplier}</span></p>
-                            </div>
-                        </div>
-                    </div>
+                                    <div className='space-y-10 px-16 text-xl font-bold'>
+                                        <p>Price: <span className='text-blue-600  font-bold'>${price}</span></p>
+                                        <p className="text-gray-600 text-base">
+                                            {description}
+                                        </p>
+                                        <p>Supplier: <span className='text-orange-600 font-semibold'>{supplier}</span></p>
+                                    </div>
+                                </div>
+                            </div>}
                 </div>
                 <div className='flex justify-center items-center bg-gray-100'>
                     <div className='text-center py-8'>
                         <h1 className='font-bold text-4xl mb-16 text-slate-800'>Update Stock</h1>
                         <div className='flex my-8 justify-center gap-4'>
                             <p className='text-xl'>Available: <CountUp className='text-red-600 text-4xl font-bold' end={newQuantity} /></p>
-                            <button onClick={handleDelivered} className='mt-1 bg-indigo-500 text-white px-4 py-2 '>Delivered</button>
+                            <button onClick={handleDelivered} disabled={updating} className='mt-1 bg-indigo-500 text-white px-4 py-2 '>Delivered</button>
                         </div>
                         <form onSubmit={handleRestock}>
                             <input className='border-2 p-2' type="number" name='number' placeholder='Enter number of item' required />
-                            <button type='submit' className='bg-indigo-500 border-indigo-500 border-2 text-white px-4 py-2'>Restock</button>
+                            <button type='submit' disabled={updating} className='bg-indigo-500 border-indigo-500 border-2 text-white px-4 py-2'>Restock </button>
                         </form>
                         <Link className='flex gap-2 items-center mt-4 text-md underline text-blue-600 w-fit ml-auto' to={'/manageitems'}>Manage all items
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
+import Processing from '../CommonComp/Spinner/Processing';
 
 const AddItems = () => {
 
     const [item, setItem] = useState({});
+    const [isAdding, setIsAdding] = useState(false);
     const [user] = useAuthState(auth);
 
     const handleSubmit = e => {
         e.preventDefault();
+        setIsAdding(true);
         const name = e.target.name.value;
         const price = e.target.price.value;
         const quantity = e.target.quantity.value;
@@ -31,6 +34,7 @@ const AddItems = () => {
             .then(res => res.json())
             .then(data => {
                 setItem(newItem);
+                setIsAdding(false);
             })
         e.target.reset();
     }
@@ -53,8 +57,11 @@ const AddItems = () => {
                                     <textarea name='description' cols="30" rows="5" placeholder="Description..." className="border-2 w-full px-4 py-2 text-gray-700 outline-none rounded-md text-md" required></textarea>
                                     <input name='image' type="text" placeholder="Image link" className="border-2 w-full px-4 py-2 rounded-md text-md text-gray-700 outline-none" required />
                                 </div>
-                                <button type='submit'
-                                    className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">Add Item</button>
+                                <button type='submit' disabled={isAdding}
+                                    className="w-full mt-4 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white py-2 rounded-md text-lg font-semibold">{
+                                        isAdding ? <Processing></Processing>
+                                            :
+                                        <span>Add Item</span>}</button>
                             </div>
                             <Link className='flex gap-2 items-center mt-4 text-lg underline text-blue-600' to={'/manageitems'}>Manage all items
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useItems from '../../Hooks/useItems';
+import Spinner from '../CommonComp/Spinner/Spinner';
 import Item from './Item';
 
 const Items = () => {
 
-    const [items] = useItems([]);
+    const [items, setItems, loading] = useItems([]);
 
     return (
         <div>
@@ -19,12 +20,15 @@ const Items = () => {
                         T-Fashion Warehouse
                     </h1>
                 </div>
-
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-3 ">
-                    {
-                        items.slice(0,6).map(item => <Item key={item._id} item={item}></Item>)
-                    }
-                </div>
+                {
+                    loading ? <Spinner></Spinner>
+                        :
+                        <div className="grid grid-cols-1 gap-2 md:grid-cols-3 ">
+                            {
+                                items.slice(0, 6).map(item => <Item key={item._id} item={item}></Item>)
+                            }
+                        </div>
+                }
             </div>
             <div className='w-fit ml-auto mr-4'>
                 <Link className='flex gap-2 items-center mt-4 text-lg underline text-blue-600 mb-8' to={'/manageitems'}>Manage all items
