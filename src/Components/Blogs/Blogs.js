@@ -10,7 +10,7 @@ const Blogs = () => {
     return (
         <div>
             <Header></Header>
-            <div className='mx-12'>
+            <div className='md:mx-12'>
                 <h1 className='text-center text-4xl font-bold text-gray-600 uppercase my-16'>Some common question answer</h1>
                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="100" className='p-8 flex flex-col md:flex-row items-center gap-4 border'>
                     <div className='flex-1'>

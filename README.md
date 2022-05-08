@@ -14,7 +14,7 @@ Some features of the project:
  * In Manage Inventories page, user can see all the items of the warehouse. User also can update or delete items from here.
  * There is a similar page 'My items' shows the specific items of user added themselves. This is a protected page from server, so user need to be JWT verified to access items.
  * By clicking 'Add new item' button, user will redirected to add items page. Here user can add items and see the information immediately.
- * There is two types of authentication available in this site. Email-Password and Google auth.
+ * There is two types of authentication available in this site. Email-Password and Google auth. There is a functionality for reset password.
  * The is another section of some blogs related to Web Development basic knowledge, like javaScript, Node.js, MongoDb etc...
 
 This website is build with ** React, Tailwind-Css, React-Router, Firebase-Authentication, React-Firebase-Hooks, MongoDB **etc.
