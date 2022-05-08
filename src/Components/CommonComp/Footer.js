@@ -8,7 +8,7 @@ const Footer = () => {
                     <div>
                         <img src={'https://img.icons8.com/external-flaticons-flat-flat-icons/64/000000/external-inventory-e-commerce-flaticons-flat-flat-icons.png'} className="mr-5 h-6 sm:h-9" alt="logo" />
                         <p className="max-w-xs mt-4 text-sm text-gray-600">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
+                            Welcome to this simple react inventory management site. This is a demo site build for developing purposes only.
                         </p>
                         <div className="flex mt-8 space-x-6 text-gray-600">
                             <p className="hover:opacity-75">

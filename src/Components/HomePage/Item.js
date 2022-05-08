@@ -27,9 +27,9 @@ const Item = props => {
 
     return (
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="50" className="p-4 text-center cursor-pointer">
-            <div className="py-8 rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-[#EEF2FF] text-slate-800">
+            <div className="border-2 border-indigo-500 rounded-lg overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-[#EEF2FF] text-slate-800">
                 <div className="space-y-6">
-                    <img className="mx-auto h-[350px] w-[320px] border-2 border-gray-400 rounded" src={image} alt="" />
+                    <img className="mx-auto h-[380px] w-full border-gray-400 rounded" src={image} alt="" />
 
                     <div className='flex justify-between px-8'>
                         <p>Price: <span className='text-blue-600  font-bold'>${price}</span></p>
@@ -45,7 +45,7 @@ const Item = props => {
                             <p>Supplier: <span className='text-orange-600 font-semibold'>{supplier}</span></p>
                         </div>
                     </div>
-                    <Link to={`/inventory/${_id}`} className="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center">
+                    <Link to={`/inventory/${_id}`} className="text-white w-full bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-bold text-md py-4 inline-flex justify-center items-center">
                         Update
                         <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                     </Link>

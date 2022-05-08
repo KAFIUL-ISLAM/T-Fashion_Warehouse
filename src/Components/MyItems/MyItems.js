@@ -1,3 +1,4 @@
+import aos from 'aos';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,8 @@ import Spinner from '../CommonComp/Spinner/Spinner';
 
 const MyItems = () => {
 
+    aos.init();
+ 
     const [user] = useAuthState(auth);
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -71,7 +74,7 @@ const MyItems = () => {
                                 loading ? <tr><th colSpan={4}><Spinner></Spinner></th></tr>
                                     :
                                     myItems.map(item =>
-                                        <tr className="border-b hover:bg-orange-100" key={item._id}>
+                                        <tr data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="50" data-aos-once="true" className="border-b hover:bg-orange-100" key={item._id}>
                                             <td className="p-3 px-5 flex items-center gap-4"><img className='hidden md:block w-10 h-10 rounded-full' src={item.image} alt="" /><span>{item.name}</span></td>
                                             <td className="p-3 px-5">{item.quantity}</td>
                                             <td className="p-3 px-5 hidden md:table-cell">{item.supplier}</td>

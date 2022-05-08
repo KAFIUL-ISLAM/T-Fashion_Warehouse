@@ -3,9 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
-
 import useSetAccessToken from '../../Hooks/useSetAccessToken';
-import Spinner from '../CommonComp/Spinner/Spinner';
 import Processing from '../CommonComp/Spinner/Processing';
 
 const Login = () => {
