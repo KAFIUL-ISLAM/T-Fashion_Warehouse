@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
 import useSetAccessToken from '../../Hooks/useSetAccessToken';
 import Processing from '../CommonComp/Spinner/Processing';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -46,10 +47,10 @@ const Login = () => {
 
         if (email) {
             await sendPasswordResetEmail(email);
-            alert('Reset Password e-mail sent successful');
+            toast('Reset Password e-mail sent successful');
         }
         else {
-            alert('Please enter your Email');
+            toast('Please enter your Email');
         }
     }
 

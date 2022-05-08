@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import AddItems from './Components/AddItems/AddItems';
 import Login from './Components/AuthenticationPage/Login';
@@ -6,7 +7,7 @@ import Register from './Components/AuthenticationPage/Register';
 import Blogs from './Components/Blogs/Blogs';
 import NotFoundPage from './Components/CommonComp/NotFoundPage';
 import Home from './Components/HomePage/Home';
-
+import 'react-toastify/dist/ReactToastify.css';
 import ManageItems from './Components/ManageItems/ManageItems';
 import MyItems from './Components/MyItems/MyItems';
 import RequiredAuth from './Components/RequiredAuth/RequiredAuth';
@@ -38,6 +39,7 @@ function App() {
         </Route>
         <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

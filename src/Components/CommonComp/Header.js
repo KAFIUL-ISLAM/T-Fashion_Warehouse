@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import ActiveLink from '../ActiveLink/ActiveLink';
 
@@ -12,7 +13,7 @@ const Header = () => {
 
     const logOut = () => {
         signOut(auth);
-        alert('You are logged out');
+        toast('You are logged out');
     }
 
     return (

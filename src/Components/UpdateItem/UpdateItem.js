@@ -5,6 +5,7 @@ import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
 import CountUp from 'react-countup';
 import Spinner from '../CommonComp/Spinner/Spinner';
+import { toast } from 'react-toastify';
 
 const UpdateItem = () => {
 
@@ -49,7 +50,7 @@ const UpdateItem = () => {
             .then(res => res.json)
             .then(data => {
                 setQuantity(updatedQuantity);
-                alert('updated successful');
+                toast('Successfully updated');
                 setUpdating(false);
             })
     }

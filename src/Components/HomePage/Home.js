@@ -3,6 +3,7 @@ import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
 import CounterSection from './CounterSection';
 import Items from './Items';
+import Services from './Services';
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
             <Header></Header>
             <Items></Items>
             <CounterSection></CounterSection>
+            <Services></Services>
             <Footer></Footer>
         </div >
     );

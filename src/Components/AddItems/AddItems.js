@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Footer from '../CommonComp/Footer';
 import Header from '../CommonComp/Header';
@@ -35,6 +36,7 @@ const AddItems = () => {
             .then(data => {
                 setItem(newItem);
                 setIsAdding(false);
+                toast("Successfully added new item");
             })
         e.target.reset();
     }
