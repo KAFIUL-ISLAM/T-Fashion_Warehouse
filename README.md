@@ -17,6 +17,6 @@ Some features of the project:
  * There is two types of authentication available in this site. Email-Password and Google auth. There is a functionality for reset password.
  * The is another section of some blogs related to Web Development basic knowledge, like javaScript, Node.js, MongoDb etc...
 
-This website is build with ** React, Tailwind-Css, React-Router, Firebase-Authentication, React-Firebase-Hooks, MongoDB **etc.
+This website is build with **React, Tailwind-Css, React-Router, Firebase-Authentication, React-Firebase-Hooks, MongoDB** etc.
 
 ### The Project is deployed by Firebase Hosting and server site deployed by Heroku.
